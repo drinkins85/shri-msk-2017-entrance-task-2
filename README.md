@@ -133,3 +133,6 @@ filter – объект параметров для фильтрации
 
 ## scheduleApp. teacher. deleteTeacher (id) – удаляет лекцию по id 
 
+# Хранилище
+В качестве хранилища используется MongoDB на сервисе www.mlab.com
+Mlab предоставляет базу и API для работы по HTTP
