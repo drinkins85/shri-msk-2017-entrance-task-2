@@ -1,6 +1,6 @@
 # Школы
 
-# scheduleApp.school. addSchool(name, count)  -  добавление школы
+* scheduleApp.school. addSchool(name, count)  -  добавление школы
 	name(string) – Название школы
 	count(number) – Количкство учеников
 	scheduleApp.school.getSchools([param]) – получение списка школ
