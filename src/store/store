@@ -1,0 +1,88 @@
+module.exports = function Mlab() {
+    let store = {};
+    let dbName = 'drinkins';
+    let apiKey = 'zywutnCK_3XXPn4vuD4sb8lEUBbd5d5m';
+    let dbUrl = 'https://api.mlab.com/api/1/databases';
+
+    store.put = function (collection, data) {
+        return new Promise((resolve, reject) => {
+            let xhr = new XMLHttpRequest();
+            let apiUrl = dbUrl + '/' + dbName + '/collections/' + collection + '?apiKey=' + apiKey;
+            xhr.open("POST", apiUrl, true);
+            xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+            xhr.onreadystatechange = function() {
+                if (this.readyState === 4) {
+                    if (this.status >= 200 && this.status < 400) {
+                        let res = this.responseText;
+                        resolve(res);
+                    } else {
+                        reject(new Error('Error'));
+                    }
+                }
+            };
+            xhr.send(data);
+        });
+    };
+
+    store.delete = function (collection, id) {
+        return new Promise((resolve, reject) => {
+            let xhr = new XMLHttpRequest();
+            let apiUrl = dbUrl + '/' + dbName + '/collections/' + collection + '/'+ id +'?apiKey=' + apiKey;
+            xhr.open("DELETE", apiUrl, true);
+            xhr.onreadystatechange = function() {
+                if (this.readyState === 4) {
+                    if (this.status >= 200 && this.status < 400) {
+                        let res = this.responseText;
+                        resolve(res);
+                    } else {
+                        reject(new Error('Error'));
+                    }
+                }
+            };
+            xhr.send();
+        });
+    };
+
+    store.getList = function (collection) {
+            return new Promise((resolve, reject) => {
+                let xhr = new XMLHttpRequest();
+                let apiUrl = dbUrl + '/' + dbName + '/collections/' + collection + '?apiKey=' + apiKey;
+                xhr.open("GET", apiUrl, true);
+                xhr.onreadystatechange = function() {
+                    if (this.readyState === 4) {
+                        if (this.status >= 200 && this.status < 400) {
+                            let res = JSON.parse(this.responseText);
+                            resolve(res);
+                        } else {
+                            reject(new Error('Error'));
+                        }
+                    }
+                };
+                xhr.send();
+        });
+    };
+
+    store.sync = function(collection){
+        return new Promise((resolve, reject) => {
+            let xhr = new XMLHttpRequest();
+            let apiUrl = dbUrl + '/' + dbName + '/collections/' + collection + '?apiKey=' + apiKey;
+            xhr.open("GET", apiUrl, true);
+            xhr.onreadystatechange = function() {
+                if (this.readyState === 4) {
+                    if (this.status >= 200 && this.status < 400) {
+                        let res = JSON.parse(this.responseText, (key, value) => {
+                            if (key === 'dateStart' || key === 'dateFinish' ) return new Date(value);
+                            return value;
+                        });
+                        resolve(res);
+                    } else {
+                        reject(new Error('Error'));
+                    }
+                }
+            };
+            xhr.send();
+        });
+    };
+    return store;
+}();
+

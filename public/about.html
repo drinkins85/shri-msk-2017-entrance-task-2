@@ -1,0 +1,310 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="css/schedule.min.css" media="all" type="text/css">
+<title>About</title>
+</head>
+
+<body>
+
+ <div class="container">
+
+        <div class="schedule-table">
+            <div class="schedule-table__row">
+                <div class="schedule-table__col schedule-table__col_color_dark schedule-table__col_align_center schedule-table__col_size_full schedule-table__col_vertical_middle" >
+                    <h1>Библиотека для работы с расписанием лекций</h1>
+                </div>
+            </div>
+        </div>
+
+Подключение:
+&lt;script src="app.js"&gt;&lt;/script&gt;
+<br />
+<br />
+
+После подключения можно использовать глобальный объект scheduleApp
+<br />
+<br />
+
+
+        <div class="schedule-table">
+            <div class="schedule-table__row">
+                <div class="schedule-table__col schedule-table__col_color_dark schedule-table__col_align_center schedule-table__col_size_full schedule-table__col_vertical_middle" >
+                    <h2>Школы</h2>
+                </div>
+            </div>
+        </div>
+
+
+<b>scheduleApp.school. addSchool(name, count)  -  добавление школы</b><br />
+<blockquote>
+name(string) – Название школы<br />
+
+count(number) – Количкство учеников<br />
+
+scheduleApp.school.getSchools([param]) – получение списка школ<br />
+
+В качестве параметра принимается объект параметров<br />
+<blockquote>
+type : "html-list" – результат в виде html кода<br />
+
+type : "html-select" – результат в виде элемента select<br />
+
+Если параметр type не указан – результат возвращается в виде массива.
+<br />
+<br />
+
+sort: {field : “имя поля”, sort-order: “asc/desc” } - сортировка<br />
+
+</blockquote>
+</blockquote>
+<br />
+
+<b>scheduleApp.school.getSchoolById(id) – возвращает школу по id</b><br />
+<blockquote>
+Возвращает объект School<br />
+
+Методы <br />
+<blockquote>
+School.getId() – возвращает id<br />
+
+School.getName() – возвращает название <br />
+
+School.getCount()– возвращает количество учеников<br />
+
+School.getJSON() – возвращает объект School в формате JSON<br />
+</blockquote>
+</blockquote>
+
+<br />
+
+
+<b>scheduleApp.school.deleteSchool(id) – удаляет школу по id</b><br />
+<blockquote>
+При удалении проверяются следующие условия:<br />
+- Есть ли в расписании лекции для этой школы (прошедшие лекции не учитываются). Удаление невозможно если для школы запланированы лекции.
+</blockquote>
+<br />
+<br />
+
+
+        <div class="schedule-table">
+            <div class="schedule-table__row">
+                <div class="schedule-table__col schedule-table__col_color_dark schedule-table__col_align_center schedule-table__col_size_full schedule-table__col_vertical_middle" >
+                    <h2>Аудитории</h2>
+                </div>
+            </div>
+        </div>
+
+
+
+<b>scheduleApp.classroom. addClassRoom(name, capacity, description) – добавление аудитории</b><br />
+<blockquote>
+
+	name(string) – название аудитории<br />
+
+	capacity(number) – вместимость<br />
+
+	description(string)-описание<br />
+    
+    
+    </blockquote>
+<br />
+
+<b>scheduleApp.school.getClassRooms([param]) – получение списка аудиторий</b><br />
+<blockquote>
+В качестве параметра принимается объект параметров<br />
+
+
+type : "html-list" – результат в виде html кода<br />
+
+type : "html-select" – результат в виде элемента select<br />
+Если параметр type не указан – результат возвращается в виде массива.<br />
+<br />
+
+sort: {field : “имя поля”, sort-order: “asc/desc” } - сортировка<br />
+<br />
+
+</blockquote>
+
+<b>scheduleApp. classroom. getClassRooms (id) – возвращает аудиторию по id</b><br />
+<blockquote>
+Возвращает объект ClassRoom<br />
+
+Методы <br />
+<blockquote>
+ClassRoom.getId() – возвращает id<br />
+
+ClassRoom.getName() – возвращает название <br />
+
+ClassRoom.getCapacity()– возвращает  вместимость<br />
+
+ClassRoom.getDescription() – возвращает описание<br />
+
+ClassRoom.getJSON() – возвращает объект ClassRoom в формате JSON<br />
+</blockquote>
+<br />
+
+</blockquote>
+<b>scheduleApp. classroom. getClassRooms (id) – удаляет аудиторию по id</b><br />
+<blockquote>
+При удалении проверяются следующие условия:<br />
+
+- Есть ли в расписании лекции в этой аудитории (прошедшие лекции не учитываются). Удаление невозможно если в аудитории запланированы лекции.
+</blockquote>
+<br />
+
+        <div class="schedule-table">
+            <div class="schedule-table__row">
+                <div class="schedule-table__col schedule-table__col_color_dark schedule-table__col_align_center schedule-table__col_size_full schedule-table__col_vertical_middle" >
+                    <h2>Преподаватели</h2>
+                </div>
+            </div>
+        </div>
+
+
+
+
+<b>scheduleApp.teacher.addTeacher(firstname, lastname, company, description) – добавление преподавателя</b><br />
+<blockquote>
+firstname(string) - имя<br />
+
+lastname(string) - фамилия<br />
+
+company(string) - компания<br />
+
+description(string) – описание<br />
+<br />
+</blockquote>
+<b>scheduleApp. teacher. getTeachers ([param]) – получение списка преподавателей</b><br />
+<blockquote>
+В качестве параметра принимается объект параметров<br />
+
+{type : "html-list"} – результат в виде html кода<br />
+
+{type : "html-select"} – результат в виде элемента select<br />
+<br />
+
+sort: {field : “имя поля”, sort-order: “asc/desc” } - сортировка<br />
+
+Если параметр type не указан – результат возвращается в виде массива.<br />
+<br />
+
+</blockquote>
+<b>scheduleApp. teacher. getTeacherById (id) – возвращает преподавателя по id</b><br />
+<blockquote>
+	Возвращает объект Teacher<br />
+<br />
+
+Методы <br />
+<blockquote>
+Teacher.getId() – возвращает id<br />
+
+Teacher. getName() – возвращает фамилию и имя <br />
+
+Teacher. getCompany() – возвращает компанию<br />
+
+Teacher. getDescription() – возвращает описание<br />
+
+Teacher. getJSON() – возвращает объект Teacher в формате JSON<br />
+</blockquote>
+
+</blockquote>
+
+<b>scheduleApp. teacher. deleteTeacher (id) – удаляет преподавателя по id</b><br />
+<blockquote>
+При удалении проверяются следующие условия:<br />
+
+- Есть ли у этого преподавателя в расписании лекции (прошедшие лекции не учитываются). Удаление невозможно если у преподавателя запланированы лекции.
+<br />
+</blockquote>
+
+        <div class="schedule-table">
+            <div class="schedule-table__row">
+                <div class="schedule-table__col schedule-table__col_color_dark schedule-table__col_align_center schedule-table__col_size_full schedule-table__col_vertical_middle" >
+                    <h2>Лекции</h2>
+                </div>
+            </div>
+        </div>
+
+
+
+<b>scheduleApp. lection. addLection(name, dateStart, dateFinish, teacher, classRoom, schools) – добавление школы</b><br />
+<blockquote>
+name(string) – тема лекции<br />
+
+dateStart(object Date) – дата и время начала<br />
+
+dateFinish(object Date)- дата и время окончания<br />
+
+teacher(object Teacher) - преподаватель<br />
+
+classroom(object  ClassRoom) - аудитория<br />
+
+schools(Array[object School]) – школы<br />
+</blockquote>
+
+
+<b>scheduleApp. lection .getLections([param]) – получение списка лекций</b><br />
+<blockquote>
+В качестве параметра принимается объект параметров<br />
+
+type : "html-list" – результат в виде html кода<br />
+
+type : "html-select" – результат в виде элемента select<br />
+
+Если параметр type не указан – результат возвращается в виде массива.<br />
+<br />
+
+sort: {field : “имя поля”, sort-order: “asc/desc” } – сортировка<br />
+<blockquote>
+filter – объект параметров для фильтрации<br />
+
+classRoom : id(number)  - фильтр по id аудитории<br />
+
+teacher: id(number)  - фильтр по id преподавателя<br />
+
+schools[ id1(number), id2(number).. ] – фильтр по школам (принимает массив id школ )<br />
+
+dateStart: “YYYY-MM-DD”/ object Date – фильтр по дате начала (принимает строку в формате YYYY-MM-DD или объект Date)<br />
+
+dateFinish: “YYYY-MM-DD”/ object Date – фильтр по дате окончания (принимает строку в формате YYYY-MM-DD или объект Date)<br />
+
+Если ничего не найдено - возвращает  false<br />
+</blockquote>
+</blockquote>
+
+<b>scheduleApp. lection. getTeacherById (id) – возвращает лекцию по id</b><br />
+<blockquote>
+	Возвращает объект Lection<br />
+
+Методы <br />
+<blockquote>
+lection.getId() – возвращает id<br />
+
+lection.getName() – возвращает тему <br />
+
+lection.getDateStart() – возвращает дату и время начала<br />
+
+lection.getDateFinish() – возвращает дату и время окончания<br />
+
+lection. getTeacher()– возвращает преподавателя (объект Teacher)<br />
+
+lection.getClassRoom() – возвращает аудиторию (объект ClassRoom)<br />
+
+lection.getSchools() – возвращает школы (массив объектов School)<br />
+
+lection.getJSON() – возвращает объект Teacher в формате JSON<br />
+</blockquote>
+</blockquote>
+
+<b>scheduleApp. teacher. deleteTeacher (id) – удаляет лекцию по id</b>
+<br />
+<br />
+
+
+</div>
+
+</body>
+</html>

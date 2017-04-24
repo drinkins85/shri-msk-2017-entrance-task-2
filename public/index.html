@@ -1,0 +1,208 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Y2</title>
+    <link rel="stylesheet" href="css/schedule.min.css" media="all" type="text/css">
+    <link href="css/modal-window.min.css" type="text/css" rel="stylesheet" media="all">
+    <link href="css/styles.css" type="text/css" rel="stylesheet" media="all">
+    <script src="js/app.js"></script>
+</head>
+<body>
+
+    <div class="error-block" id="error-block">
+        <span class="error-block__message"></span>
+        <a class="error-block__close" onclick="hideError()">&#10761;</a>
+    </div>
+
+    <div class="container">
+
+        <div class="schedule-table">
+           <div class="schedule-table__row">
+                   <div class="schedule-table__col schedule-table__col_color_dark schedule-table__col_align_center schedule-table__col_size_full schedule-table__col_vertical_middle" >
+                       <h2>Школы</h2>
+                   </div>
+            </div>
+        </div>
+
+        <div data-content="schools" ><img src="img/load-indicator.gif"></div>
+
+        <div class="addForm">
+            <div class="schedule-table">
+                <div class="schedule-table__row">
+                    <div class="schedule-table__col schedule-table__col_size_xl">
+                        Добавить школу
+                    </div>
+                </div>
+                <form id="schoolAddForm">
+                    <div class="schedule-table__row">
+
+                        <div class="schedule-table__col schedule-table__col_size_xl">
+                            <input class="input input_size_xl" name="school-name" type="text" placeholder="Название школы">
+                        </div>
+                        <div class="schedule-table__col schedule-table__col_size_l">
+                            <input class="input input input_size_xl" name="school-count" type="number" placeholder="Количество учеников">
+                        </div>
+                        <div class="schedule-table__col schedule-table__col_size_l">
+                            <button data-action="addSchool" class="button button_add button_color-sheme_yellow" style="margin-left: 0;">Добавить</button>
+                        </div>
+                   </div>
+                </form>
+            </div>
+        </div>
+        <br><br>
+        <div class="schedule-table">
+            <div class="schedule-table__row">
+                <div class="schedule-table__col schedule-table__col_color_dark schedule-table__col_align_center schedule-table__col_size_full schedule-table__col_vertical_middle" >
+                    <h2>Преподаватели</h2>
+                </div>
+            </div>
+        </div>
+
+        <div data-content="teachers"><img src="img/load-indicator.gif"></div>
+
+        <div class="addForm">
+            <div class="schedule-table">
+                <div class="schedule-table__row">
+                    <div class="schedule-table__col schedule-table__col_size_xl">
+                        Добавить преподавателя
+                    </div>
+                </div>
+                <form id="teacherAddForm">
+                    <div class="schedule-table__row">
+                        <div class="schedule-table__col schedule-table__col_size_half">
+                            <input class="input input_size_xl input_margin-b" name="teacher-firstname" type="text" placeholder="Имя">
+                            <input class="input input input_size_xl input_margin-b" name="teacher-lastname" type="text" placeholder="Фамилия">
+                            <input class="input input input_size_xl" name="teacher-company" type="text" placeholder="Компания">
+                        </div>
+                        <div class="schedule-table__col schedule-table__col_size_half">
+                            <textarea class="textarea textarea_size_xl" name="teacher-description" placeholder="Дополнительная информация"></textarea>
+                        </div>
+
+                    </div>
+                    <div class="schedule-table__row">
+                        <div class="schedule-table__col schedule-table__col_align_center schedule-table__col_size_full">
+                            <button data-action="addTeacher" class="button button_add button_color-sheme_yellow">Добавить</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <br>
+            <div class="schedule-table">
+                <div class="schedule-table__row">
+                    <div class="schedule-table__col schedule-table__col_color_dark schedule-table__col_align_center schedule-table__col_size_full schedule-table__col_vertical_middle" >
+                        <h2>Аудитории</h2>
+                    </div>
+                </div>
+            </div>
+
+        <div data-content="classrooms"><img src="img/load-indicator.gif"></div>
+
+        <div class="addForm">
+            <div class="schedule-table">
+                <div class="schedule-table__row">
+                    <div class="schedule-table__col schedule-table__col_size_xl">
+                        Добавить аудиторию
+                    </div>
+                </div>
+                <form id="classroomAddForm">
+                    <div class="schedule-table__row">
+                        <div class="schedule-table__col schedule-table__col_size_half">
+                            <input class="input input_size_xl input_margin-b" name="classroom-name" type="text" placeholder="Название аудитории">
+                            <input class="input input_size_xl" name="classroom-capacity" type="number" placeholder="Вместимость">
+
+                        </div>
+                        <div class="schedule-table__col schedule-table__col_size_half">
+                            <textarea class="textarea textarea_size_xl" name="classroom-description" placeholder="Дополнительная информация"></textarea>
+                        </div>
+
+                    </div>
+                    <div class="schedule-table__row">
+                        <div class="schedule-table__col schedule-table__col_align_center schedule-table__col_size_full">
+                            <button data-action="addClassroom" class="button button_add button_color-sheme_yellow">Добавить</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <br> <br>
+        <div class="schedule-table">
+            <div class="schedule-table__row">
+                <div class="schedule-table__col schedule-table__col_color_dark schedule-table__col_align_center schedule-table__col_size_full schedule-table__col_vertical_middle" >
+                    <h2>Расписание лекций</h2>
+                </div>
+            </div>
+
+            <div class="schedule-table__row  horisontal-line_color_gray schedule-table__row_color_lightgray"  id="filter">
+                <div class="schedule-table__col schedule-table__col_size_l schedule-table__col_vertical_middle" >
+                    <input class="input input_size_xl input_prefix_from input_margin-b" name="lection-date-from" type="date" >
+                    <input class="input input_size_xl input_prefix_to" name="lection-date-to" type="date" >
+                </div>
+                <div class="schedule-table__col schedule-table__col_size_l schedule-table__col_vertical_middle" >
+                    <div data-content="classroom-select" class="select-container select-classroom"></div>
+                    <div data-content="teacher-select" class="select-container"></div>
+                </div>
+                <div class="schedule-table__col schedule-table__col_size_third schedule-table__col_vertical_middle" >
+                    <div data-content="school-select" class="select-container"></div>
+                </div>
+                <div class="schedule-table__col schedule-table__col_size_l schedule-table__col_vertical_middle schedule-table__col_align_center" >
+                    <button class="button button_color-sheme_yellow" onclick="filter()" name="filter">Фильтр</button><br>
+                    <button class="button button_color-sheme_gray hidden" onclick="resetFilter()" name="reset"  >Сбросить фильтр</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="lections" data-content="lections"><img src="img/load-indicator.gif"></div>
+        <br>
+        <div class="addForm">
+            <div class="schedule-table">
+                <div class="schedule-table__row">
+                    <div class="schedule-table__col schedule-table__col_size_xl">
+                        Добавить лекцию
+                    </div>
+                </div>
+                <form id="lectionAddForm">
+                    <div class="schedule-table__row">
+                        <div class="schedule-table__col schedule-table__col_size_full">
+                            <input class="input input_size_xl" name="lection-theme" type="text" placeholder="Тема лекции" >
+                        </div>
+                    </div>
+
+                    <div class="schedule-table__row  horisontal-line_color_gray" >
+                        <div class="schedule-table__col schedule-table__col_size_third schedule-table__col_vertical_middle" >
+                            <label>Дата</label>
+                            <input class="input input_size_xm" name="lection-date" type="date" >
+                            <label> Начало</label>
+                            <input class="input input_size_m" name="lection-start" type="time" >
+                            <label> Окончание</label>
+                            <input class="input input_size_m" name="lection-finish" type="time" >
+                        </div>
+                        <div class="schedule-table__col schedule-table__col_size_third schedule-table__col_vertical_middle" >
+                            <div data-content="classroom-select" class="select-container select-classroom"></div>
+                            <div data-content="teacher-select" class="select-container"></div>
+                        </div>
+                        <div class="schedule-table__col schedule-table__col_size_third schedule-table__col_vertical_middle" >
+                            <div data-content="school-select" class="select-container"></div>
+                        </div>
+                    </div>
+
+                    <div class="schedule-table__row">
+                        <div class="schedule-table__col schedule-table__col_size_full schedule-table__col_align_center">
+                            <button data-action="addLection" class="button button_add button_color-sheme_yellow">Добавить</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script src="js/scripts.js"></script>
+    <script id="mod" src="js/modal.min.js"></script>
+
+</body>
+</html>
