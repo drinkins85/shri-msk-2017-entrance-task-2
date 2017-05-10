@@ -165,3 +165,10 @@ scheduleApp.lection.getLections({dateStart: "2017-04-01", dateFinish: "2017-04-3
 # Хранилище
 В качестве хранилища используется MongoDB на сервисе www.mlab.com
 Mlab предоставляет базу и API для работы по HTTP
+
+# React + Redux
+Вариант решения задачи с использованием библиотек React и Redux
+https://github.com/drinkins85/ya-shri-2-react
+https://drinkins85.github.io/ya-shri-2-react/public/
+
+
