@@ -168,6 +168,7 @@ Mlab предоставляет базу и API для работы по HTTP
 
 # React + Redux
 Вариант решения задачи с использованием библиотек React и Redux
+
 https://github.com/drinkins85/ya-shri-2-react
 https://drinkins85.github.io/ya-shri-2-react/public/
 
